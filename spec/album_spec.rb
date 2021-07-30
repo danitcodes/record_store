@@ -7,4 +7,15 @@ describe '#Album' do
       expect(Album.all).to(eq([]))
     end
   end
+
+  describe('#save') do
+    #covers two check - ability to save albums to mock db & verifies .all() works for multiple items
+    it("saves an album") do
+      album = Album.new("Giant Steps", nil)
+      album.save()
+      album2 = Album.new("Blue", nil)
+      album2.save()
+      expect(Album.all).to(eq([album, album2]))
+    end
+  end
 end
