@@ -24,4 +24,11 @@ class Album
   def ==(album_to_compare)
     self.name() == album_to_compare.name()
   end
+
+  def self.clear
+    # resets the value of @@albums to an empty hash
+    # and resets rows, too
+    @@albums == {}
+    @@total_rows = 0
+  end
 end
