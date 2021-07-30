@@ -18,4 +18,12 @@ describe '#Album' do
       expect(Album.all).to(eq([album, album2]))
     end
   end
+
+  describe('#==') do
+    it("is the same album if it has the sam eattributes as another album") do
+      album = Album.new("Blue", nil)
+      album2 = Album.new("Blue", nil)
+      expect(album).to(eq(album2))
+    end
+  end
 end
