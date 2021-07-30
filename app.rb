@@ -1,3 +1,6 @@
+# Where Sinatra handles routing
+# run application with CLI `ruby app.rb`
+
 require('sinatra')
 
 get('/') do
