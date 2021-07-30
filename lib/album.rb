@@ -13,15 +13,15 @@ class Album
     # doesn't add a new row if an album already has an id
   end
 
-  def save
-    @@albums[self.id] = Album.new(self.name, self.id)
-  end
-
   def self.all
     @@albums.values()
   end
 
-  def ==(album_to_compare)
+  def save
+    @@albums[self.id] = Album.new(self.name, self.id)
+  end
+
+  def == (album_to_compare)
     self.name() == album_to_compare.name()
   end
 
