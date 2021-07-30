@@ -54,4 +54,13 @@ describe '#Album' do
       expect(Album.find(album.id)).to(eq(album))
     end
   end
+
+  describe('#update') do
+    it("updates an album by id") do
+      album = Album.new("Giant Steps", nil)
+      album.save()
+      album.update("A Love Supreme")
+      expect(album.name).to(eq("A Love Supreme"))
+    end
+  end
 end
