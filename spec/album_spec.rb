@@ -2,6 +2,12 @@ require 'rspec'
 require 'album'
 
 describe '#Album' do
+
+  before(:each) do
+    # clear mock databases btw tests
+    Album.clear()
+  end
+
   describe('.all') do
     it("returns an empty array when there are no albums") do
       expect(Album.all).to(eq([]))
@@ -33,7 +39,7 @@ describe '#Album' do
       album = Album.new("Giant Steps", nil)
       album.save()
       album2 = Album.new("Blue", nil)
-      album 2.save()
+      album2.save()
       Album.clear()
       expect(Album.all).to(eq([]))
     end
