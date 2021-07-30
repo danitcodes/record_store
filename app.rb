@@ -2,6 +2,11 @@
 # run application with CLI `ruby app.rb`
 
 require('sinatra')
+require('sinatra/reloader')
+#also_reload method tells app which files to reload
+#globbing pattern ** - looks inside all dirs inside lib
+#wildcard - * to reload all files w/ an .rb ext
+also_reload('lib/**/*.rb')
 
 get('/') do
   #home page
