@@ -9,6 +9,7 @@ describe '#Album' do
   end
 
   describe('#save') do
+    #can't be tested 1st otherwise will fail tests
     #covers two check - ability to save albums to mock db & verifies .all() works for multiple items
     it("saves an album") do
       album = Album.new("Giant Steps", nil)
