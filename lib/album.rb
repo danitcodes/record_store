@@ -31,4 +31,8 @@ class Album
     @@albums == {}
     @@total_rows = 0
   end
+
+  def self.find(id)
+    @@albums[id]
+  end
 end
