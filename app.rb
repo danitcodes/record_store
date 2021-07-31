@@ -3,21 +3,25 @@
 
 require('sinatra')
 require('sinatra/reloader')
+require('pry')
+require('./lib/album')
 #also_reload method tells app which files to reload
 #globbing pattern ** - looks inside all dirs inside lib
 #wildcard - * to reload all files w/ an .rb ext
 also_reload('lib/**/*.rb')
 
 get('/') do
-  #home page
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums') do
-  #albums
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums/new') do
-  #new album
+  erb(:new_album)
 end
 
 get('/albums/:id') do
