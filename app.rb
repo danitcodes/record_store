@@ -3,12 +3,12 @@
 
 require('sinatra')
 require('sinatra/reloader')
-require('pry')
 require('./lib/album')
+require('pry')
+also_reload('lib/**/*.rb')
 #also_reload method tells app which files to reload
 #globbing pattern ** - looks inside all dirs inside lib
 #wildcard - * to reload all files w/ an .rb ext
-also_reload('lib/**/*.rb')
 
 get('/') do
   @albums = Album.all
@@ -24,16 +24,16 @@ get('/albums/new') do
   erb(:new_album)
 end
 
-get('/albums/:id') do
-  #specific album based on ID, where value of ID is #{params[:id]}
-end
-
 post('/albums') do
   name = params[:album_name]
   album = Album.new(name, nil)
   album.save()
   @albums = Album.all()
   erb(:albums)
+end
+
+get('/albums/:id') do
+  #specific album based on ID, where value of ID is #{params[:id]}
 end
 
 get('/albums/:id/edit') do
