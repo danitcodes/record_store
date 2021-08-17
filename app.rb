@@ -50,7 +50,10 @@ patch('/albums/:id') do
 end
 
 delete('/albums/:id') do
-  #deletes an album
+  @album = Album.find(params[:id].to+i())
+  @album.delete()
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/custom_route') do
