@@ -38,11 +38,15 @@ get('/albums/:id') do
 end
 
 get('/albums/:id/edit') do
-  #updates an album w/ an ID of #{params[:id]}
+  @album = Album.find(params[:id].to_i())
+  erb(:edit_album)
 end
 
 patch('/albums/:id') do
-  #updates an album
+  @album = Album.find(params[:id].to_i())
+  @album.update(params[:name])
+  @albums = Album.all
+  erb(:albums)
 end
 
 delete('/albums/:id') do
