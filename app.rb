@@ -50,7 +50,7 @@ patch('/albums/:id') do
 end
 
 delete('/albums/:id') do
-  @album = Album.find(params[:id].to+i())
+  @album = Album.find(params[:id].to_i())
   @album.delete()
   @albums = Album.all
   erb(:albums)
