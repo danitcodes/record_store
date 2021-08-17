@@ -33,7 +33,8 @@ post('/albums') do
 end
 
 get('/albums/:id') do
-  #specific album based on ID, where value of ID is #{params[:id]}
+  @album = Album.find(params[:id].to_i())
+  erb(:album)
 end
 
 get('/albums/:id/edit') do
