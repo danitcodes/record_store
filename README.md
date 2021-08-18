@@ -13,6 +13,13 @@
 
 - localhost:4567
 
+### Commands
+
+1. `bundle` compiles the Gemfile.
+2. `ruby app.rb` in the CLI will run the program.
+3. Exit app with Ctrl + C.
+4. `rspec` runs test cases.
+
 ### Known Bugs
 
 - Clear() test does not pass.
