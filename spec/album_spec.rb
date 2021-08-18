@@ -3,8 +3,8 @@ require 'album'
 
 describe '#Album' do
 
+  # clear mock database btw tests
   before(:each) do
-    # clear mock databases btw tests
     Album.clear()
   end
 

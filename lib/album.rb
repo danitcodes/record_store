@@ -1,5 +1,6 @@
 class Album
-  attr_reader :id, :name
+  attr_reader :id
+  attr_accessor :name
 
   @@albums = {}
   # class variable that mocks a database
@@ -13,12 +14,12 @@ class Album
     # doesn't add a new row if an album already has an id
   end
 
-  def self.all
-    @@albums.values()
-  end
-
   def save
     @@albums[self.id] = Album.new(self.name, self.id)
+  end
+
+  def self.all
+    @@albums.values()
   end
 
   def ==(album_to_compare)
@@ -37,7 +38,8 @@ class Album
   end
 
   def update(name)
-    @name = name
+    self.name = name
+    @@albums[self.id] = Album.new(self.name, self.id)
   end
 
   def delete
