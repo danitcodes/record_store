@@ -45,4 +45,9 @@ class Album
   def delete
     @@albums.delete(self.id)
   end
+
+  #not ideal to rely on another class to find songs, but is better than using global variables
+  def songs
+    Song.find_by_album(self.id)
+  end
 end
