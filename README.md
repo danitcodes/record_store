@@ -19,7 +19,17 @@
 2. `ruby app.rb` in the CLI will run the program.
 3. Exit app with Ctrl + C.
 4. `rspec` runs test cases.
+5. Debug in Capybara integration testing with `save_and_open_page`. (is similar to binding.pry)
 
 ### Known Bugs
 
 - Clear() test does not pass.
+
+### Tasks to Take On
+
+1. Write a method for search.
+2. Finish adding tests for all album specs.
+3. Add integration tests for each route in the application. (A single test can hit multiple routes - e.g. GET /albums, GET /albums/new, POST /albums.)
+4. Add song properties (lyrics, songwriter, etc.)
+5. Practice nesting classes inside modules.
+6. Add album attributes, & use `attributes` hash.
