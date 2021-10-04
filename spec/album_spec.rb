@@ -73,5 +73,12 @@ describe '#Album' do
       album.delete()
       expect(Album.all).to(eq([album2]))
     end
+
+    describe("#name") do
+      it("returns the name of an album") do
+        album = Album.new({:name => "In Rainbows", :artist => "Radiohead", :year => 2007, :genre => "Rock", :length => "42:39"})
+        expect(album.name()).to(eq("In Rainbows"))
+      end
+    end
   end
 end
