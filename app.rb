@@ -13,13 +13,11 @@ also_reload('lib/**/*.rb')
 #wildcard - * to reload all files w/ an .rb ext
 
 get('/') do
-  @albums = Album.all
-  erb(:albums)
+  redirect to ('/albums')
 end
 
 get('/albums') do
-  @albums = Album.all
-  erb(:albums)
+  redirect to ('/albums')
 end
 
 get('/albums/new') do
@@ -30,8 +28,7 @@ post('/albums') do
   name = params[:album_name]
   album = Album.new(name, nil)
   album.save()
-  @albums = Album.all()
-  erb(:albums)
+  redirect to ('/albums')
 end
 
 get('/albums/:id') do
@@ -47,15 +44,13 @@ end
 patch('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   @album.update(params[:name])
-  @albums = Album.all
-  erb(:albums)
+  redirect to ('/albums')
 end
 
 delete('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   @album.delete()
-  @albums = Album.all
-  erb(:albums)
+  redirect to ('/albums')
 end
 
 # details for a specific song
