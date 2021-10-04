@@ -1,4 +1,6 @@
-# Basic Ruby Routing Exercise with Sinatra
+# Record Store
+
+## Basic routing practice with Ruby and Sinatra
 
 ## By Danielle Thompson
 
