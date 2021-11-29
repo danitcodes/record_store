@@ -1,29 +1,31 @@
 class Album
   attr_reader :id
-  attr_accessor :name
+  attr_accessor :name, :artist, :year, :genre, :length
 
-  @@albums = {}
-  # class variable that mocks a database
-  @@total_rows = 0
-  # a class variable to keep track of total # rows & increment value for new Albums
-
-  def initialize(attributes)
-    @name = attributes.fetch(:name)
-    #@id = attributes.fetch(:id) || @@total_rows += 1
-    # if `id` has a value, it will become the value of @id; if `id` is `nil`, value of @id will be @@total_rows += 1
-    # doesn't add a new row if an album already has an id
-    @artist = attributes.fetch(:artist)
-    @year = attributes.fetch(:year)
-    @genre = attributes.fetch(:genre)
-    @length = attributes.fetch(:length)
+  def initialize(name, artist, year, genre, description, id)
+    @name = name
+    @id = id
+    @artist = artist
+    @year = year
+    @genre = genre
+    @length = length
   end
 
   def save
-    @@albums[self.id] = Album.new(self.name, self.id)
+    result = DB.exec("INSERT INTO albums (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
   end
 
   def self.all
-    @@albums.values()
+    # pg gem's `exec()` method``
+    returned_albums = DB.exec("SELECT * FROM albums;")
+    albums = []
+    returned_albums.each() do |album|
+      name = album.fetch("name")
+      id = album.fetch("id").to_i
+      albums.push(Album.new({:name => name, :id => id}))
+    end
+    albums
   end
 
   def ==(album_to_compare)
@@ -31,23 +33,23 @@ class Album
   end
 
   def self.clear
-    # resets the value of @@albums to an empty hash
-    # and resets rows, too
-    @@albums == {}
-    @@total_rows = 0
+    DB.exec("DELETE FROM albums *;")
   end
 
   def self.find(id)
-    @@albums[id]
+    album = DB.exec("SELECT * FROM albums WHERE id = #{id};").first
+    name = album.fetch("name")
+    id = album.fetch("id").to_i
+    Album.new({:name => name, :id => id})
   end
 
   def update(name)
-    self.name = name
-    @@albums[self.id] = Album.new(self.name, self.id)
+    @name = name
+    DB.exec("UPDATE albums SET name = '#{@name}' WHERE id = #{@id};")
   end
 
   def delete
-    @@albums.delete(self.id)
+    DB.exec("DELETE FROM albums WHERE id = #{@id};")
   end
 
   #not ideal to rely on another class to find songs, but is better than using global variables
