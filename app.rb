@@ -6,6 +6,9 @@ require('sinatra/reloader')
 require('./lib/album')
 require('pry')
 require('./lib/song')
+require('pg')
+
+DB = PG.connect({:dbname => "record_store"})
 
 also_reload('lib/**/*.rb')
 #also_reload method tells app which files to reload
