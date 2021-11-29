@@ -2,6 +2,7 @@
 require('capybara/rspec')
 # require the Sinatra app itself
 require('./app')
+require 'spec_helper'
 #tells Capybara it will be testing this Sinatra application (as it can run many types of applications)
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)

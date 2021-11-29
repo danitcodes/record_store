@@ -1,7 +1,4 @@
-require 'rspec'
-require 'song'
-require 'album'
-require 'pry'
+require 'spec_helper'
 
 describe '#Song' do
   # uses instance variables to DRY up tests w/ before(:each) blocks
