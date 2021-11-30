@@ -58,3 +58,7 @@ class Album
     Song.find_by_album(self.id)
   end
 end
+
+# @TODO fix bug where user tries to navigate to the URL of an album that doesn't exist
+# see lesson for more info:
+# https://www.learnhowtoprogram.com/ruby-and-rails/ruby-database-basics/deleting-dependents#:~:text=nil%0A%20%20end%0Aend-,Now,-our%20test%20passes
