@@ -1,8 +1,9 @@
 require 'rspec'
+require 'pry'
 require 'pg'
 require 'album'
 require 'song'
-require 'pry'
+require 'artist'
 
 DB = PG.connect({:dbname => 'record_store_test'})
 
