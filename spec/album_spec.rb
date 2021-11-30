@@ -74,4 +74,15 @@ describe '#Album' do
 #       expect(album.name).to(eq("In Rainbows"))
 #     end
 #   end
+
+describe('#delete') do
+  it("deletes all songs belonging to a deleted album") do
+    album = Album.new({:name => "A Love Supreme", :id => nil, :album => "A Love Supreme", :year => 1965, :genre => "Jazz", :length => "32 minutes, 49 seconds" })
+    album.save()
+    song = Song.new({:name => "Naima", :album_id => album.id, :id => nil})
+    song.save()
+    album.delete()
+    expect(Song.find(song.id)).to(eq(nil))
+  end
+end
 end
