@@ -46,16 +46,16 @@ describe '#Artist' do
     end
   end
 
-  describe('#update') do
+  describe('.update') do
     it("updates an artist by id") do
       artist = Artist.new({name: 'Blue', id: nil})
       artist.save()
-      artist.update("Blue Man Group")
+      artist.update('Blue Man Group')
       expect(artist.name).to(eq("Blue Man Group"))
     end
   end
 
-  describe('#update') do
+  describe('.update') do
     it("adds an album to an artist") do
       artist = Artist.new({:name => "John Coltrane", :id => nil})
       artist.save()
@@ -65,6 +65,8 @@ describe '#Artist' do
       expect(artist.albums).to(eq([album]))
     end
   end
+
+  # ^^ @TODO A separate test should be written to make sure that an Artist's name can be updated as well.
 
   describe("#delete") do
     it("deletes an artist by id") do
