@@ -36,3 +36,10 @@
 5. Practice nesting classes inside modules.
 6. Add album attributes, & use `attributes` hash.
 7. Put any edit and delete forms on the artist or album.erb page, which means wouldn't need to have edit_X.erb pages.
+
+### User Stories to Implement
+
+- As a customer, I want to see a welcome page that includes a list of recent Albums and featured Artists.
+- As a customer, I want to click on an Album to see more information about it.
+- As a customer, I want to search for an Album by name.
+- As a business owner, I want to be able to add, update and delete Albums and Artists.
