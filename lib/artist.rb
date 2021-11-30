@@ -43,8 +43,9 @@ class Artist
   end
 
   def delete
-    DB.exec("DELETE FROM artists WHERE id = #{@id};")
     DB.exec("DELETE FROM songs WHERE album_id = #{@id};")
+    DB.exec("DELETE FROM artists WHERE id = #{@id};")
+    DB.exec("DELETE FROM albums_artists WHERE artist_id = #{@id};")
   end
 
   #not ideal to rely on another class to find songs, but is better than using global variables
@@ -52,6 +53,8 @@ class Artist
     Song.find_by_artist(self.id)
   end
 
+  # @TODO rewrite method so it makes just two total queries, not n+1 queries.
+  # see https://www.learnhowtoprogram.com/ruby-and-rails/ruby-database-basics/record-store-with-many-to-many#:~:text=something%20like%20this%3A-,SELECT,-*%20FROM%20albums%20where
   def albums
     albums = []
     results = DB.exec("SELECT album_id FROM albums_artists WHERE artist_id = #{@id};")
