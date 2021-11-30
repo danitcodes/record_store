@@ -1,6 +1,6 @@
 class Album
-  attr_reader :id, :name, :artist, :year, :genre, :length
-  attr_accessor :name, :artist, :year, :genre, :length
+  attr_reader :id, :name, :artist, :year, :genre, :length, :albums
+  attr_accessor :name
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
