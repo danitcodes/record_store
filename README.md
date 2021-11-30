@@ -35,3 +35,4 @@
 4. Add song properties (lyrics, songwriter, etc.)
 5. Practice nesting classes inside modules.
 6. Add album attributes, & use `attributes` hash.
+7. Put any edit and delete forms on the artist or album.erb page, which means wouldn't need to have edit_X.erb pages.
