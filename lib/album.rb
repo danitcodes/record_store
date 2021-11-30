@@ -50,6 +50,7 @@ class Album
 
   def delete
     DB.exec("DELETE FROM albums WHERE id = #{@id};")
+    DB.exec("DELETE FROM songs WHERE album_id = #{@id};")
   end
 
   #not ideal to rely on another class to find songs, but is better than using global variables
