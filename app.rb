@@ -6,21 +6,23 @@ require('sinatra/reloader')
 require('./lib/album')
 require('pry')
 require('./lib/song')
-require('pg')
-
-DB = PG.connect({:dbname => "record_store"})
-
 also_reload('lib/**/*.rb')
 #also_reload method tells app which files to reload
 #globbing pattern ** - looks inside all dirs inside lib
 #wildcard - * to reload all files w/ an .rb ext
+require('pg')
+
+DB = PG.connect({:dbname => "record_store"})
+
 
 get('/') do
-  redirect to ('/albums')
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums') do
-  redirect to ('/albums')
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums/new') do
@@ -29,9 +31,10 @@ end
 
 post('/albums') do
   name = params[:album_name]
-  album = Album.new(name, nil)
+  album = Album.new({name: name, id: nil})
   album.save()
-  redirect to ('/albums')
+  @albums = Album.all()
+  erb(:albums)
 end
 
 get('/albums/:id') do
