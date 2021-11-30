@@ -14,7 +14,7 @@ require('pg')
 
 DB = PG.connect({:dbname => "record_store"})
 
-
+# @TODO add a proper index.erb page, not a redirect to albums
 get('/') do
   @albums = Album.all
   erb(:albums)
@@ -99,4 +99,43 @@ delete('/albums/:id/songs/:song_id') do
   @album = Album.find(params[:id].to_i())
   # reroutes back to album id found
   erb(:album)
+end
+
+get('/artists') do
+  @artists = Artist.all
+  erb(:artists)
+end
+
+get('/artists/new') do
+  erb(:new_artist)
+end
+
+post('/artists') do
+  name = params[:artist_name]
+  artist = Artist.new({name: name, id: nil})
+  artist.save()
+  @artists = Artist.all()
+  erb(:artists)
+end
+
+get('/artists/:id') do
+  @artist = Artist.find(params[:id].to_i())
+  erb(:artist)
+end
+
+get('/artists/:id/edit') do
+  @artist = Artist.find(params[:id].to_i())
+  erb(:edit_artist)
+end
+
+patch('/artists/:id') do
+  @artist = Artist.find(params[:id].to_i())
+  @artist.update(params[:name])
+  redirect to ('/artists')
+end
+
+delete('/artists/:id') do
+  @artist = Artist.find(params[:id].to_i())
+  @artist.delete()
+  redirect to ('/artists')
 end
