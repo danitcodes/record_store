@@ -5,10 +5,11 @@ class Album
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
-    @artist = attributes.fetch(:artist)
-    @year = attributes.fetch(:year)
-    @genre = attributes.fetch(:genre)
-    @length = attributes.fetch(:length)
+    # @TODO update model w/ attributes, & tests (?)
+    @artist = artist
+    @year = year
+    @genre = genre
+    @length = length
   end
 
   def save
