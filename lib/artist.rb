@@ -1,6 +1,5 @@
 class Artist
   attr_reader :id, :name
-  attr_accessor :name
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -51,5 +50,17 @@ class Artist
   #not ideal to rely on another class to find songs, but is better than using global variables
   def songs
     Song.find_by_artist(self.id)
+  end
+
+  def albums
+    albums = []
+    results = DB.exec("SELECT album_id FROM albums_artists WHERE artist_id = #{@id};")
+    results.each() do |result|
+      album_id = result.fetch("album_id").to_i()
+      album = DB.exec("SELECT * FROM albums WHERE id = #{album_id};")
+      name = album.first().fetch("name")
+      albums.push(Album.new({name: 'name', id: 'album_id'}))
+    end
+    albums
   end
 end
